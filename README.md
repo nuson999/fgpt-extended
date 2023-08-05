@@ -9,3 +9,5 @@ Ultimate Chatbot UI for ChimeraGPT 💬
 - (WIP) Fallback between models automatically 🔄
 
 ![Chatbot UI](./public/screenshots/SUS.jpg)
+
+This project contains code from "fgpt" (https://github.com/hihumanzone/fgpt) by hihumanzone
