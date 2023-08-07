@@ -18,7 +18,8 @@ Ultimate Chatbot UI for ChimeraGPT 💬
 - Check real-time API Status from the UI 📊
 - Improved Regenerate Method to prevent errors 🛠️
 - Fixed bugs 🐞
-- (WIP) Fallback between models automatically 🔄
+- (Testing) Fallback between models automatically 🔄
+- (Testing) System Adaptive Theme 🌓
 
 ### Todo
 System Adaptive Theme 🌓
