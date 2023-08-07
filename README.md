@@ -20,6 +20,16 @@ Ultimate Chatbot UI for ChimeraGPT 💬
 - Fixed bugs 🐞
 - (WIP) Fallback between models automatically 🔄
 
+### Todo
+System Adaptive Theme 🌓
+- We're planning to implement a system adaptive theme feature that will allow the application to switch between light and dark modes based on the user's system preferences.
+
+Image Generation Feature 🖼️
+- We're also aiming to add an image generation which will enable users to create images within the application.
+
+Plug-in Support 🔌
+- Finally, we're looking forward to implementing plug-in support that will allow users to enhance the functionality of the application with additional, optional features.
+
 ## Installation
 
 Follow these steps to get a local copy up and running:
@@ -41,8 +51,6 @@ Follow these steps to get a local copy up and running:
    ```
 
 3. **Install the required dependencies**
-
-   Depending on your project, this step will vary. For example, if your project uses npm, you would use:
 
    ```bash
    npm install
