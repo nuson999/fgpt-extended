@@ -348,6 +348,73 @@ const Home = ({
     serverSidePluginKeysSet,
   ]);
 
+  const setThemeBasedOnSystem = (): void => {
+    console.log('setThemeBasedOnSystem');
+    // Get the system-set theme
+    const darkModeMediaQuery = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    );
+    let systemTheme: string = darkModeMediaQuery.matches ? 'dark' : 'light';
+
+    // Change the .system to .dark or .light depending on the system-set theme
+    const mainElement = document.querySelector('main#main');
+
+    if (mainElement && mainElement.classList.contains('system')) {
+      console.log('.system class is present for the mainElement');
+      if (mainElement) {
+        if (systemTheme === 'dark') {
+          // Change class from .system to .dark
+          console.log('dark');
+          mainElement.classList.replace('system', 'dark');
+        } else {
+          // Change class from .system to .light
+          console.log('light');
+          mainElement.classList.replace('system', 'light');
+        }
+      }
+    } else {
+      console.log('.system class is not present for the mainElement');
+      if (mainElement) {
+        if (systemTheme === 'dark') {
+          // Change class from .system to .dark
+          console.log('dark');
+          mainElement.classList.replace('light', 'dark');
+        } else {
+          // Change class from .system to .light
+          console.log('light');
+          mainElement.classList.replace('dark', 'light');
+        }
+      }
+    }
+  };
+
+  // Use useEffect to handle system theme settings changes
+  useEffect(() => {
+    let localTheme: string | null = null;
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      localTheme = JSON.parse(settings).theme;
+    }
+
+    if (localTheme === 'system') {
+      setThemeBasedOnSystem();
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', setThemeBasedOnSystem);
+      window
+        .matchMedia('(prefers-color-scheme: light)')
+        .addEventListener('change', setThemeBasedOnSystem);
+      return () => {
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .removeEventListener('change', setThemeBasedOnSystem);
+        window
+          .matchMedia('(prefers-color-scheme: light)')
+          .removeEventListener('change', setThemeBasedOnSystem);
+      };
+    }
+  }, [lightMode]);
+
   return (
     <HomeContext.Provider
       value={{
@@ -371,6 +438,7 @@ const Home = ({
       </Head>
       {selectedConversation && (
         <main
+          id="main"
           className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
         >
           <div className="fixed top-0 w-full sm:hidden">
