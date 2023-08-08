@@ -41,6 +41,7 @@ import HomeContext from './home.context';
 import { HomeInitialState, initialState } from './home.state';
 
 import { v4 as uuidv4 } from 'uuid';
+import { s } from 'vitest/dist/env-afee91f0';
 
 interface Props {
   serverSideApiKeyIsSet: boolean;
@@ -348,42 +349,70 @@ const Home = ({
     serverSidePluginKeysSet,
   ]);
 
-  const setThemeBasedOnSystem = (): void => {
-    console.log('setThemeBasedOnSystem');
+  const setThemeBasedOnSystem = (status: Boolean): void => {
+    // setSystemThemeStatus(true);
+    console.log('ThemeBasedOnSystem status', status);
+
+    const applyTheme = (mainElement: Element): void => {
+      if (mainElement && mainElement.classList.contains('system')) {
+        console.log('.system class is present for the mainElement');
+        if (mainElement) {
+          if (systemTheme === 'dark') {
+            // Change class from .system to .dark
+            console.log('dark');
+            mainElement.classList.replace('system', 'dark');
+          } else {
+            // Change class from .system to .light
+            console.log('light');
+            mainElement.classList.replace('system', 'light');
+          }
+        }
+      } else {
+        console.log('.system class is not present for the mainElement');
+        if (mainElement) {
+          if (systemTheme === 'dark') {
+            console.log('dark');
+            mainElement.classList.replace('light', 'dark');
+          } else {
+            console.log('light');
+            mainElement.classList.replace('dark', 'light');
+          }
+        }
+      }
+    };
+
     // Get the system-set theme
     const darkModeMediaQuery = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
     let systemTheme: string = darkModeMediaQuery.matches ? 'dark' : 'light';
+    console.log('systemTheme:', systemTheme);
 
-    // Change the .system to .dark or .light depending on the system-set theme
-    const mainElement = document.querySelector('main#main');
-
-    if (mainElement && mainElement.classList.contains('system')) {
-      console.log('.system class is present for the mainElement');
-      if (mainElement) {
-        if (systemTheme === 'dark') {
-          // Change class from .system to .dark
-          console.log('dark');
-          mainElement.classList.replace('system', 'dark');
-        } else {
-          // Change class from .system to .light
-          console.log('light');
-          mainElement.classList.replace('system', 'light');
+    if (status === false) {
+      console.log('were going to observe');
+      // Change the .system to .dark or .light depending on the system-set theme
+      const observer = new MutationObserver((mutationsList, observer) => {
+        // Look through all mutations that just occured
+        for (let mutation of mutationsList) {
+          // If the addedNodes property has one or more nodes
+          if (mutation.addedNodes.length) {
+            const mainElement = document.querySelector('main#main');
+            if (mainElement) {
+              applyTheme(mainElement);
+              observer.disconnect(); // Stop observing
+              break;
+            }
+          }
         }
-      }
+      });
+
+      // Start observing the document with the configured parameters
+      observer.observe(document, { childList: true, subtree: true });
     } else {
-      console.log('.system class is not present for the mainElement');
+      console.log('were not going to observe');
+      const mainElement = document.querySelector('main#main');
       if (mainElement) {
-        if (systemTheme === 'dark') {
-          // Change class from .system to .dark
-          console.log('dark');
-          mainElement.classList.replace('light', 'dark');
-        } else {
-          // Change class from .system to .light
-          console.log('light');
-          mainElement.classList.replace('dark', 'light');
-        }
+        applyTheme(mainElement);
       }
     }
   };
@@ -397,20 +426,24 @@ const Home = ({
     }
 
     if (localTheme === 'system') {
-      setThemeBasedOnSystem();
+      setThemeBasedOnSystem(false);
+
+      const changed = (): void => {
+        setThemeBasedOnSystem(true);
+      };
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', setThemeBasedOnSystem);
+        .addEventListener('change', changed);
       window
         .matchMedia('(prefers-color-scheme: light)')
-        .addEventListener('change', setThemeBasedOnSystem);
+        .addEventListener('change', changed);
       return () => {
         window
           .matchMedia('(prefers-color-scheme: dark)')
-          .removeEventListener('change', setThemeBasedOnSystem);
+          .removeEventListener('change', changed);
         window
           .matchMedia('(prefers-color-scheme: light)')
-          .removeEventListener('change', setThemeBasedOnSystem);
+          .removeEventListener('change', changed);
       };
     }
   }, [lightMode]);
