@@ -244,7 +244,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                 controller.abort();
                 done = true;
                 homeDispatch({ field: 'messageIsStreaming', value: false });
-              }, 10000);
+              }, 15000);
 
               const { value, done: doneReading } = await reader.read();
               clearTimeout(readingTimeout);
