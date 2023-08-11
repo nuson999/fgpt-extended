@@ -18,12 +18,10 @@ Ultimate Chatbot UI for ChimeraGPT 💬
 - Check real-time API Status from the UI 📊
 - Improved Regenerate Method to prevent errors 🛠️
 - Fixed bugs 🐞
+- System Adaptive Theme 🌓
 - (Testing) Fallback between models automatically 🔄
-- (Testing) System Adaptive Theme 🌓
 
 ### Todo
-System Adaptive Theme 🌓
-- We're planning to implement a system adaptive theme feature that will allow the application to switch between light and dark modes based on the user's system preferences.
 
 Image Generation Feature 🖼️
 - We're also aiming to add an image generation which will enable users to create images within the application.
