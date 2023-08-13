@@ -423,6 +423,10 @@ const Home = ({
     const settings = localStorage.getItem('settings');
     if (settings) {
       localTheme = JSON.parse(settings).theme;
+    } else {
+      console.log('Set default theme to system');
+      localTheme = 'system';
+      localStorage.setItem('settings', JSON.stringify({ theme: 'system' }));
     }
 
     if (localTheme === 'system') {
