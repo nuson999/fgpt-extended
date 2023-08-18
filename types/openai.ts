@@ -16,6 +16,10 @@ export enum OpenAIModelID {
   GPT_3_5_0301 = 'gpt-3.5-turbo-0301',
   GPT_3_5_16K = 'gpt-3.5-turbo-16k',
   LLAMA_2_70B_CHAT = 'llama-2-70b-chat',
+  OASST_SFT_6_LLAMA_30B = 'oasst-sft-6-llama-30b',
+  CLAUDE_2 = 'claude-2',
+  CLAUDE_INSTANT = 'claude-instant',
+  CLAUDE_2_100K = 'claude-2-100k',
 }
 
 export const fallbackModelID = OpenAIModelID.GPT_3_5;
@@ -62,5 +66,29 @@ export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
     name: 'Llama-2-70B-Chat',
     maxLength: 24000,
     tokenLimit: 8192,
+  },
+  [OpenAIModelID.OASST_SFT_6_LLAMA_30B]: {
+    id: OpenAIModelID.OASST_SFT_6_LLAMA_30B,
+    name: 'OASST-SFT-6-Llama-30B',
+    maxLength: 24000,
+    tokenLimit: 8192,
+  },
+  [OpenAIModelID.CLAUDE_2]: {
+    id: OpenAIModelID.CLAUDE_2,
+    name: 'Claude-2',
+    maxLength: 24000,
+    tokenLimit: 10000,
+  },
+  [OpenAIModelID.CLAUDE_INSTANT]: {
+    id: OpenAIModelID.CLAUDE_INSTANT,
+    name: 'Claude-Instant',
+    maxLength: 24000,
+    tokenLimit: 10000,
+  },
+  [OpenAIModelID.CLAUDE_2_100K]: {
+    id: OpenAIModelID.CLAUDE_2_100K,
+    name: 'Claude-2-100K',
+    maxLength: 240000,
+    tokenLimit: 100000,
   },
 };
