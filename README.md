@@ -3,6 +3,21 @@
 Ultimate Chatbot UI for ChimeraGPT 💬
 
 
+| Supported Models     |
+|----------------------|
+| GPT-4                |
+| GPT-4-0314           |
+| GPT-4-32K            |
+| GPT-3.5-turbo        |
+| GPT-3.5-turbo-0301   |
+| GPT-3.5-turbo-16K    |
+| llama-2-70b-chat     |
+| oasst-sft-6-llama-30b|
+| claude-2             |
+| claude-instant       |
+| claude-2-100k        |
+
+
 ## Table of Contents
 
 - [Features](#features)
