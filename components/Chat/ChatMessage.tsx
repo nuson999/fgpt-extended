@@ -288,7 +288,10 @@ export const ChatMessage: FC<Props> = memo(
                   }`}
                 </MemoizedReactMarkdown>
 
-                <div className="md:-mr-8 ml-1 md:ml-0 flex flex-col md:flex-row gap-4 md:gap-1 items-center md:items-start justify-end md:justify-start">
+                <div
+                  className="md:-mr-8 ml-1 md:ml-0 flex flex-col md:flex-row gap-4 md:gap-1 items-center md:items-start justify-end md:justify-start"
+                  style={{ zIndex: '9999' }}
+                >
                   {messagedCopied ? (
                     <IconCheck
                       size={20}

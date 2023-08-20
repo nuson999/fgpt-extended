@@ -1,4 +1,4 @@
-import { IconClearAll, IconSettings } from '@tabler/icons-react';
+import { IconClearAll, IconSettings, IconTrash } from '@tabler/icons-react';
 import {
   MutableRefObject,
   memo,
@@ -527,7 +527,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                     className="ml-2 cursor-pointer hover:opacity-50"
                     onClick={onClearAll}
                   >
-                    <IconClearAll size={18} />
+                    <IconTrash size={18} />
                   </button>
                 </div>
                 {showSettings && (
