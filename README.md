@@ -1,21 +1,6 @@
 # FGPT Extended
 
-Ultimate Chatbot UI for ChimeraGPT 💬
-
-
-| Supported Models     |
-|----------------------|
-| GPT-4                |
-| GPT-4-0314           |
-| GPT-4-32K            |
-| GPT-3.5-turbo        |
-| GPT-3.5-turbo-0301   |
-| GPT-3.5-turbo-16K    |
-| llama-2-70b-chat     |
-| oasst-sft-6-llama-30b|
-| claude-2             |
-| claude-instant       |
-| claude-2-100k        |
+Ultimate Chatbot UI for ChatGPT 💬
 
 
 ## Table of Contents
@@ -73,6 +58,8 @@ Follow these steps to get a local copy up and running:
 4. **Run the project**
 
    After successfully installing the dependencies, you should now be able to run the project.
+   
+   Set API endpoint and others in .env, and then
    
      ```bash
    npm run dev
